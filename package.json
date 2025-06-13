@@ -7,14 +7,16 @@
   "scripts": {
     "test": "mocha test/test.js"
   },
-  "dependencies": {
-    "sqlite3": "^5.0.2"
+  "peerDependencies": {
+    "sqlite3": "^5.0.0",
+    "express-session": "^1.0.0"
   },
   "devDependencies": {
     "connect": ">=1.0.0",
-    "express-session": "^1.13.0",
+    "express-session": "^1.18.1",
     "mocha": "^2.3.4",
-    "should": "^8.2.0"
+    "should": "^8.2.0",
+    "sqlite3": "^5.1.7"
   },
   "engines": {
     "node": ">=0.4.x"

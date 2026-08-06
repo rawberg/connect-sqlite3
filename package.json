@@ -1,15 +1,17 @@
 {
   "name": "connect-sqlite3",
   "description": "SQLite3 session store for Connect",
-  "version": "0.9.17",
+  "version": "0.9.18",
   "author": "David Feinberg",
   "main": "lib/connect-sqlite3",
   "scripts": {
     "test": "mocha test/test.js"
   },
   "peerDependencies": {
-    "sqlite3": "^5.0.0",
     "express-session": "^1.0.0"
+  },
+  "optionalDependencies": {
+    "sqlite3": "^5.0.0"
   },
   "devDependencies": {
     "connect": ">=1.0.0",
@@ -29,5 +31,8 @@
     {
       "type": "MIT"
     }
-  ]
+  ],
+  "allowScripts": {
+    "sqlite3@5.1.7": true
+  }
 }

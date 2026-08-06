@@ -79,10 +79,47 @@ describe('connect-sqlite3 basic test suite', function() {
                     should.not.exist(err, 'session count after destroy returned an error');
                     should.exist(len);
                     len.should.equal(0);
-                    done();                        
-                });                  
+                    done();
+                });
             });
         });
     });
 });
-  
+
+describe('connect-sqlite3 filename-based db option (legacy usage)', function() {
+    before(function() {
+        this.memStore = new SQLiteStore({db: ':memory:'});
+    });
+
+    it('it should save a new session record', function(done) {
+        this.memStore.set('1111222233334444', {cookie: {maxAge:2000}, name: 'sample name'}, function(err, rows) {
+            should.not.exist(err, 'set() returned an error');
+            rows.should.be.empty;
+            done();
+        });
+    });
+
+    it('it should retrieve an active session', function(done) {
+        this.memStore.get('1111222233334444', function(err, session) {
+            should.not.exist(err, 'get() returned an error');
+            should.exist(session);
+            (session).should.eql({cookie: {maxAge:2000}, name: 'sample name'});
+            done();
+        });
+    });
+
+    it('it should destroy a session', function(done) {
+        var that = this;
+        this.memStore.destroy('1111222233334444', function(err) {
+            should.not.exist(err, 'destroy returned an error');
+
+            that.memStore.length(function(err, len) {
+                should.not.exist(err, 'session count after destroy returned an error');
+                should.exist(len);
+                len.should.equal(0);
+                done();
+            });
+        });
+    });
+});
+
